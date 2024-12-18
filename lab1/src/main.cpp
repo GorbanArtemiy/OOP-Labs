@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-int period_to_hours(int hour, string period) {
+int period_to_hours(int hour, std::string period) {
     if (period == "pm"){
         hour += 12;
     }
@@ -15,8 +15,8 @@ int period_to_hours(int hour, string period) {
     return hour;
 }
 
-string time_reformat(int hour, int minute, string period) {
+std::string time_reformat(int hour, int minute, std::string period) {
     hour = period_to_hours(hour, period);
-    string result = to_string(hour) + to_string(minute);
+    std::string result = std::to_string(hour) + std::to_string(minute);
     return result;
 }
