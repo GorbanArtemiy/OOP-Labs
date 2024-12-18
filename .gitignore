@@ -6,4 +6,3 @@ Makefile
 CMakeCache.txt
 CTestTestfile.cmake
 build
-.vscode
