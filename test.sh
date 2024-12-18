@@ -12,7 +12,7 @@ check_and_test() {
     if [ -d "$dir_name" ]; then
         cd "$dir_name" || { echo "Не удалось перейти в папку $dir_name"; return 1; }
         echo "Выполняем ctest в папке $dir_name"
-        ctest --verbose
+        ctest .
         cd .. || { echo "Не удалось вернуться в папку build"; return 1; }
     fi
 }
