@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
 
-int period_to_hours(int hour, string period)
+int period_to_hours(int hour, std::string period);
 
-string time_reformat(int hour, int minute, string period)
+std::string time_reformat(int hour, int minute, std::string period);
