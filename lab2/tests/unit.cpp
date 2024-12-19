@@ -19,7 +19,7 @@ TEST(ThreeBehavior, Subtraction) {
 TEST(ThreeBehavior, InvalidInitListException) {
   ASSERT_THROW(Three t1({'1', '2', '9'}), std::invalid_argument);
 }
-1
+
 TEST(ThreeBehavior, InvalidStringException) {
   ASSERT_THROW(Three t1("999"), std::invalid_argument);
 }
