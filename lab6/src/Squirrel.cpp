@@ -11,7 +11,7 @@ bool Squirrel::LetsFight(NPC* other) {
 
 // Visit
 bool Squirrel::Defend(NPC* other) {
-    return true;
+    bool result = this->is_alive_;
     if (other->GetType() == "Orc") {
         result = false;
     } else if (other->GetType() == "Druid") {
