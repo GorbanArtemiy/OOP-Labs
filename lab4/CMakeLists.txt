@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(lab4)
+project(lab1)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -19,33 +19,16 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-include_directories(include)
-
-# Создаем исполняемый файл
-add_executable(${PROJECT_NAME}_main main.cpp)
+# Создание библиотеки из main.cpp
+add_library(${PROJECT_NAME}_lib src/main.cpp)
 
 # Добавление тестов
 enable_testing()
 
-# Тесты для Point
-add_executable(test_${PROJECT_NAME}_Point tests/Point_unit.cpp)
-target_link_libraries(test_${PROJECT_NAME}_Point PRIVATE gtest_main)
-
-# Тесты для Figure
-add_executable(test_${PROJECT_NAME}_Figure tests/Figure_unit.cpp)
-target_link_libraries(test_${PROJECT_NAME}_Figure PRIVATE gtest_main)
-
-# Тесты для NAngle
-add_executable(test_${PROJECT_NAME}_Nangle tests/NAngle_unit.cpp)
-target_link_libraries(test_${PROJECT_NAME}_Nangle PRIVATE gtest_main)
-
-# Общий тест
-add_executable(test_${PROJECT_NAME}_General tests/General_unit.cpp)
-target_link_libraries(test_${PROJECT_NAME}_General PRIVATE gtest_main)
+# Создание тестового исполняемого файла и связывание его с Google Test и библиотекой проекта
+add_executable(test_${PROJECT_NAME} tests/unit.cpp)
+target_link_libraries(test_${PROJECT_NAME} PRIVATE gtest_main ${PROJECT_NAME}_lib)
 
 # Добавление тестов в тестовый набор
 include(GoogleTest)
-gtest_discover_tests(test_${PROJECT_NAME}_Point)
-gtest_discover_tests(test_${PROJECT_NAME}_Figure)
-gtest_discover_tests(test_${PROJECT_NAME}_Nangle)
-gtest_discover_tests(test_${PROJECT_NAME}_General)
+gtest_discover_tests(test_${PROJECT_NAME})
