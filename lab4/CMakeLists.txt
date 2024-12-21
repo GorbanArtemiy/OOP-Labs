@@ -19,17 +19,33 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Создание исполняемого файла
-add_executable(${PROJECT_NAME}_exe src/main.cpp)
+include_directories(include)
 
-# Связывание исполняемого файла с библиотеками (если нужно)
-# target_link_libraries(lab4_exe PRIVATE ${CMAKE_PROJECT_NAME}_lib)
+# Создаем исполняемый файл
+add_executable(${PROJECT_NAME}_main main.cpp)
 
 # Добавление тестов
 enable_testing()
 
-add_executable(test_${PROJECT_NAME} tests/unit.cpp)
-target_link_libraries(test_${PROJECT_NAME} gtest_main)
+# Тесты для Point
+add_executable(test_${PROJECT_NAME}_Point tests/Point_unit.cpp)
+target_link_libraries(test_${PROJECT_NAME}_Point PRIVATE gtest_main)
+
+# Тесты для Figure
+add_executable(test_${PROJECT_NAME}_Figure tests/Figure_unit.cpp)
+target_link_libraries(test_${PROJECT_NAME}_Figure PRIVATE gtest_main)
+
+# Тесты для NAngle
+add_executable(test_${PROJECT_NAME}_Nangle tests/NAngle_unit.cpp)
+target_link_libraries(test_${PROJECT_NAME}_Nangle PRIVATE gtest_main)
+
+# Общий тест
+add_executable(test_${PROJECT_NAME}_General tests/General_unit.cpp)
+target_link_libraries(test_${PROJECT_NAME}_General PRIVATE gtest_main)
 
 # Добавление тестов в тестовый набор
-add_test(NAME TestLab4 COMMAND tests)
+include(GoogleTest)
+gtest_discover_tests(test_${PROJECT_NAME}_Point)
+gtest_discover_tests(test_${PROJECT_NAME}_Figure)
+gtest_discover_tests(test_${PROJECT_NAME}_Nangle)
+gtest_discover_tests(test_${PROJECT_NAME}_General)
