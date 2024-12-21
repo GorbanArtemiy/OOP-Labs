@@ -1,7 +1,7 @@
 #include "../include/NPCFactory.hpp"
 #include "../include/Squirrel.hpp"
 #include "../include/Druid.hpp"
-#include "../include/Werewolf.hpp"
+#include "../include/Orc.hpp"
 #include <stdexcept>
 #include <unordered_map>
 #include <string>
@@ -13,8 +13,8 @@ std::unordered_map<std::string, std::function<std::shared_ptr<NPC>(const Point&,
     registry["Squirrel"] = [](const Point& position, bool is_alive) {
         return std::make_shared<Squirrel>(position, is_alive);
     };
-    registry["Werewolf"] = [](const Point& position, bool is_alive) {
-        return std::make_shared<Werewolf>(position, is_alive);
+    registry["Orc"] = [](const Point& position, bool is_alive) {
+        return std::make_shared<Orc>(position, is_alive);
     };
     registry["Druid"] = [](const Point& position, bool is_alive) {
         return std::make_shared<Druid>(position, is_alive);

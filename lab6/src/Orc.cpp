@@ -1,16 +1,16 @@
-#include "../include/Werewolf.hpp"
+#include "../include/Orc.hpp"
 #include <iostream>
 
-Werewolf::Werewolf(const Point& position, bool is_alive)
-  : NPC("Werewolf", position, is_alive) {}
+Orc::Orc(const Point& position, bool is_alive)
+  : NPC("Orc", position, is_alive) {}
 
 // Accept
-bool Werewolf::LetsFight(NPC* other) {
+bool Orc::LetsFight(NPC* other) {
     return !other->Defend(this);
 }
 
 // Visit
-bool Werewolf::Defend(NPC* other) {
+bool Orc::Defend(NPC* other) {
     bool result = this->is_alive_;
     if (other->GetType() == "Squirrel") {
         result = false;

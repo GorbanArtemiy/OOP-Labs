@@ -3,9 +3,9 @@
 #include "NPC.hpp"
 #include <memory>
 
-class Werewolf : public NPC {
+class Orc : public NPC {
 public:
-    Werewolf(const Point& position, bool is_alive = true);
+    Orc(const Point& position, bool is_alive = true);
 
     // Accept
     bool LetsFight(NPC* other) override;
