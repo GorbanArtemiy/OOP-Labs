@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(lab5)
+project(lab1)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -19,17 +19,16 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Создание исполняемого файла
-add_executable(${PROJECT_NAME}_exe src/main.cpp)
-
-# Связывание исполняемого файла с библиотеками (если нужно)
-# target_link_libraries(lab5_exe PRIVATE ${CMAKE_PROJECT_NAME}_lib)
+# Создание библиотеки из main.cpp
+add_library(${PROJECT_NAME}_lib src/main.cpp)
 
 # Добавление тестов
 enable_testing()
 
+# Создание тестового исполняемого файла и связывание его с Google Test и библиотекой проекта
 add_executable(test_${PROJECT_NAME} tests/unit.cpp)
-target_link_libraries(test_${PROJECT_NAME} gtest_main)
+target_link_libraries(test_${PROJECT_NAME} PRIVATE gtest_main ${PROJECT_NAME}_lib)
 
 # Добавление тестов в тестовый набор
-add_test(NAME TestLab5 COMMAND tests)
+include(GoogleTest)
+gtest_discover_tests(test_${PROJECT_NAME})
